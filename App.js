@@ -63,6 +63,9 @@ io.on('connection',socket=>{
         io.emit('getUsers',users)
     })
 })
+app.get('/h',(req,res)=>{
+    return res.status(200).send('welcome')
+})
 app.post('/api/register',async(req,res,next)=>{
     try {
         const {fullName,email,password}=req.body;
@@ -182,7 +185,7 @@ app.get('/api/message/:conversationId',async(req,res)=>{
         const user=await Users.findById(message.senderId);
         return {user:{id:user._id,fullName:user.fullName,email:user.email},message:message.message}
     }))
-    res.status(200).json(await messageUserData)
+    res.status(200).send(await messageUserData)
 }
     const conversationId=req.params.conversationId;
     if(conversationId ==='new'){
