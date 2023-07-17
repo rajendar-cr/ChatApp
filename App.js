@@ -2,7 +2,8 @@ const express=require('express');
 const bcryptjs=require('bcryptjs');
 const jwt=require('jsonwebtoken');
 const cors=require('cors');
-const server=require("http").createServer(server)
+const app=express();
+const server=require("http").createServer(app)
 const io=require('socket.io')(server,{
     cors:{
         origin:process.env.CLIENT_URL || 'http://localhost:3000',
@@ -17,7 +18,7 @@ const Messages=require('./models/Messages');
 //db connect
 require('./connection')
 //app use
-const app=express();
+
 const port=process.env.PORT || 3002
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
