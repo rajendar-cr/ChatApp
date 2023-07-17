@@ -19,7 +19,7 @@ const Messages=require('./models/Messages');
 require('./connection')
 //app use
 
-const port=process.env.PORT 
+const port=process.env.PORT || 3002
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
 app.use(cors())
