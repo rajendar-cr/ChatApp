@@ -218,6 +218,6 @@ app.get('/api/users/:userId',async(req,res)=>{
     }
     
 })
-app.listen(port,()=>{
+server.listen(port,()=>{
     console.log('server running on port'+port)
 })
