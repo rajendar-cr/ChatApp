@@ -34,17 +34,17 @@ io.on('connection',socket=>{
 
         }
     });
-    socket.on('sendmessage',async({senderId,receiverId,message,conversationId})=>{
-        const receiver=users.find(user =>user.userId===receiverId);
+    socket.on('sendmessage',async({senderId,recieverId,message,conversationId})=>{
+        const reciever=users.find(user =>user.userId===recieverId);
         const sender=users.find(user=>user.userId===senderId);
         const user =await Users.findById(senderId);
-     console.log(senderId,receiverId,conversationId,message)
-        if(receiver){
-         io.to(receiver.socketId).to(sender.socketId).emit('getmessage',{
+     console.log(senderId,recieverId,conversationId,message)
+        if(reciever){
+         io.to(reciever.socketId).to(sender.socketId).emit('getmessage',{
                 senderId,
                 message,
                 conversationId,
-                receiverId,
+                recieverId,
                 user:{id:user._id,fullName:user.fullName,email:user.email}
             })
         }else{
@@ -52,7 +52,7 @@ io.on('connection',socket=>{
                 senderId,
                 message,
                 conversationId,
-                receiverId,
+                recieverId,
                 user:{id:user._id,fullName:user.fullName,email:user.email}
             })
 
@@ -143,7 +143,7 @@ app.get('/api/conversation/:userId',async(req,res)=>{
     const conversationUserData=Promise.all(conversations.map(async(conversation)=>{
         const recieverId=conversation.members.find((member)=>member !== userId)
    const user=await Users.findById(recieverId)
-   return {user:{receiverId:user._id,fullName:user.fullName,email:user.email},conversationId:conversation._id}
+   return {user:{recieverId:user._id,fullName:user.fullName,email:user.email},conversationId:conversation._id}
     }))
     
     res.status(200).json( await conversationUserData)
