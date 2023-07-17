@@ -2,7 +2,7 @@ const express=require('express');
 const bcryptjs=require('bcryptjs');
 const jwt=require('jsonwebtoken');
 const cors=require('cors');
-const app=express();
+const app=express(require('cors')());
 const server=require("http").createServer(app)
 const io=require('socket.io')(server,{
     cors:{
