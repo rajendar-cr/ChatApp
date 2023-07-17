@@ -2,7 +2,8 @@ const express=require('express');
 const bcryptjs=require('bcryptjs');
 const jwt=require('jsonwebtoken');
 const cors=require('cors');
-const io=require('socket.io')(8000,{
+const server=require("http").createServer(server)
+const io=require('socket.io')(server,{
     cors:{
         origin:process.env.CLIENT_URL || 'http://localhost:3000',
         methods:['GET','POST']
