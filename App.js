@@ -19,7 +19,7 @@ const Messages=require('./models/Messages');
 require('./connection')
 //app use
 
-const port="https://chats-4soj.onrender.com"
+const port=process.env.PORT 
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
 app.use(cors())
